@@ -10,6 +10,23 @@ pip install -r requirements.txt
 
 ## Usage
 
+### GUI Application
+
+Launch the graphical interface for easy file selection and visualization:
+
+```bash
+python pitchy_gui.py
+```
+
+The GUI provides:
+- File browser for selecting audio files
+- Adjustable confidence threshold and minimum note duration
+- Visual output including:
+  - Note sequence display
+  - Piano roll visualization
+  - Pitch contour graph
+- Copy-to-clipboard functionality for detected notes
+
 ### Command Line
 
 ```bash
@@ -65,3 +82,26 @@ for note in result.notes:
 - FLAC
 - OGG
 - And other formats supported by libsndfile
+
+## Visualization API
+
+Create visualizations programmatically:
+
+```python
+from pitchy import transcribe, create_piano_roll, create_pitch_contour, create_combined_visualization
+import matplotlib.pyplot as plt
+
+result = transcribe("melody.wav")
+
+# Piano roll view
+fig, ax = create_piano_roll(result)
+plt.show()
+
+# Pitch contour
+fig, ax = create_pitch_contour(result)
+plt.show()
+
+# Combined visualization (note sequence + piano roll + pitch contour)
+fig, axes = create_combined_visualization(result)
+plt.show()
+```
